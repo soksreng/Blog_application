@@ -21,19 +21,19 @@ require 'config/constants.php';
         <div class="container nav_container">
             <a href="index.php" class="nav_logo">Jackkenas</a>
             <ul class="nav_items">
-                <li><a href="blog.php">Blog</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="services.php">Services</a></li>
-                <li><a href="contact.php">Contact</a></li>
-                <li><a href="signin.php">Sign in</a></li>
+                <li><a href="<?= ROOT_URL ?>blog.php">Blog</a></li>
+                <li><a href="<?= ROOT_URL ?>about.php">About</a></li>
+                <li><a href="<?= ROOT_URL ?>services.php">Services</a></li>
+                <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
+                <li><a href="<?= ROOT_URL ?>signin.php">Sign in</a></li>
                 <li class="nav_profile">
                     <div class="avatar">
                         <img src="./images/avatar.png" alt="">
                     </div>
 
                     <ul>
-                        <li><a href="./admin/dashboard.php">Dashboard</a></li>
-                        <li><a href="logout.html">Logout</a></li>
+                        <li><a href="<?= ROOT_URL ?>./admin/dashboard.php">Dashboard</a></li>
+                        <li><a href="<?= ROOT_URL ?>logout.html">Logout</a></li>
                     </ul>
                 </li>
                 
