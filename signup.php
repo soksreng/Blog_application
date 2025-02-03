@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Website</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/24593fac0b.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
             <div class="alert_message error">
                 <p>This is an error message</p>
             </div>
-            <form action="">
+            <form action="signup-data.php" method="POST" enctype="multipart/form-data">
                 <input type="text" placeholder="First Name">
                 <input type="text" placeholder="Last Name">
                 <input type="text" placeholder="Username">
@@ -28,7 +28,7 @@
                     <label for="avatar">User Profile</label>
                     <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
                     <button type="submit" class="btn">Sign Up</button>
-                    <small>Already have an account? <a href="signin.html">Sign in</a></small>
+                    <small>Already have an account? <a href="signin.php">Sign in</a></small>
                 </div>
             </form>
         </div>

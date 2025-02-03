@@ -1,6 +1,6 @@
 <?php
 
-require 'config/database.php';
+require '../config/database.php';
 
 ?>
 
@@ -10,7 +10,7 @@ require 'config/database.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Website</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="<?= ROOT_URL ?>css/style.css">
     <script src="https://kit.fontawesome.com/24593fac0b.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,7 @@ require 'config/database.php';
     <!--NAV-->>
     <nav>
         <div class="container nav_container">
-            <a href="index.php" class="nav_logo">Jackkenas</a>
+            <a href="<?= ROOT_URL ?>index.php" class="nav_logo">Jackkenas</a>
             <ul class="nav_items">
                 <li><a href="<?= ROOT_URL ?>blog.php">Blog</a></li>
                 <li><a href="<?= ROOT_URL ?>about.php">About</a></li>
@@ -33,8 +33,8 @@ require 'config/database.php';
                     </div>
 
                     <ul>
-                        <li><a href="<?= ROOT_URL ?>./admin/dashboard.php">Dashboard</a></li>
-                        <li><a href="<?= ROOT_URL ?>logout.html">Logout</a></li>
+                        <li><a href="<?= ROOT_URL ?>admin/dashboard.php">Dashboard</a></li>
+                        <li><a href="<?= ROOT_URL ?>logout.php">Logout</a></li>
                     </ul>
                 </li>
                 

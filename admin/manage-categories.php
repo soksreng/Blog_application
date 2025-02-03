@@ -13,12 +13,12 @@ include 'partial/header.php';
         </button>
         <aside>
             <ul>
-                <li><a href="add-post.html"><i class="fa-solid fa-pen-nib"></i><h5>Add Post</h5></a></li>
-                <li><a href="dashboard.html"><i class="fa-solid fa-pen-to-square"></i><h5>Manage Post</h5></a></li>
-                <li><a href="add-user.html"><i class="fa-solid fa-user"></i><h5>Add User</h5></a></li>
-                <li><a href="edit-user.html"><i class="fa-solid fa-user-pen"></i><h5>Manage User</h5></a></li>
-                <li><a href="add-category.html"><i class="fa-regular fa-pen-to-square"></i><h5>Add Category</h5></a></li>
-                <li><a href="manage-categories.html" class ="active"><i class="fa-solid fa-list"></i><h5>Manage Categories</h5></a></li>
+                <li><a href="add-post.php"><i class="fa-solid fa-pen-nib"></i><h5>Add Post</h5></a></li>
+                <li><a href="dashboard.php"><i class="fa-solid fa-pen-to-square"></i><h5>Manage Post</h5></a></li>
+                <li><a href="add-user.php"><i class="fa-solid fa-user"></i><h5>Add User</h5></a></li>
+                <li><a href="edit-user.php"><i class="fa-solid fa-user-pen"></i><h5>Manage User</h5></a></li>
+                <li><a href="add-category.php"><i class="fa-regular fa-pen-to-square"></i><h5>Add Category</h5></a></li>
+                <li><a href="manage-categories.php" class ="active"><i class="fa-solid fa-list"></i><h5>Manage Categories</h5></a></li>
             </ul>
         </aside>
 

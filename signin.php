@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Website</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/24593fac0b.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,8 @@
                 <input type="text" placeholder="Username or Email">
                 <input type="Password" placeholder="Password">
                 <div class="form_control">
-                <button type="submit" class="btn">Sign Up</button>
-                <small>Don't have an account? <a href="signup.html">Sign up</a></small>
+                <button type="submit" class="btn">Sign in</button>
+                <small>Don't have an account? <a href="signup.php">Sign up</a></small>
             </form>
         </div>
     </section>
