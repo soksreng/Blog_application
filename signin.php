@@ -1,8 +1,6 @@
 <?php
-session_start();;
+session_start();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,19 +18,27 @@ session_start();;
     <section class="form_section">
         <div class="container form_section-container">
             <h2>Sign in</h2>
-            <?php if (isset($_SESSION['signup'])) : ?>
+            <!--show success message-->
+            <?php if (isset($_SESSION['signup_success'])) : ?>
                 <div class="alert_message success">
-                    <p><?= $_SESSION['signup'] ;
-                        unset($_SESSION['signup']);  ?>
+                    <p><?= $_SESSION['signup_success'] ;
+                        unset($_SESSION['signup_success']);  ?>
                     </p> 
                 </div>
 
-            <?php endif ?>
-            <form action="">
-                <input type="text" placeholder="Username or Email">
-                <input type="Password" placeholder="Password">
+            <!--show error message-->
+            <?php elseif (isset($_SESSION['signin_error'])) : ?>
+                <div class="alert_message error">
+                    <p><?= $_SESSION['signin_error']; 
+                            unset($_SESSION['signin_error']); ?> 
+                    </p> 
+                </div>
+            <?php endif; ?>
+            <form action="signin-data.php" method="POST">
+                <input type="text" name="user_input" placeholder="Username or Email">
+                <input type="Password" name="password" placeholder="Password">
                 <div class="form_control">
-                <button type="submit" class="btn">Sign in</button>
+                <button type="submit" class="btn" name="submit">Sign in</button>
                 <small>Don't have an account? <a href="signup.php">Sign up</a></small>
             </form>
         </div>

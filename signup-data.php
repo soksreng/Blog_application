@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
                 header('Location: signup.php');
                 die();
             } else {
-                $_SESSION['signup-success'] = "Sign up successful, Please login";
+                $_SESSION['signup_success'] = "Sign up successful, Please login";
                 header('Location: signin.php');
                 die();
             }
