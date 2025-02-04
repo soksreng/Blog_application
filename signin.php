@@ -1,3 +1,9 @@
+<?php
+session_start();;
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +20,14 @@
     <section class="form_section">
         <div class="container form_section-container">
             <h2>Sign in</h2>
-            <div class="alert_message success">
-                <p>This is a success message</p>
-            </div>
+            <?php if (isset($_SESSION['signup'])) : ?>
+                <div class="alert_message success">
+                    <p><?= $_SESSION['signup'] ;
+                        unset($_SESSION['signup']);  ?>
+                    </p> 
+                </div>
+
+            <?php endif ?>
             <form action="">
                 <input type="text" placeholder="Username or Email">
                 <input type="Password" placeholder="Password">

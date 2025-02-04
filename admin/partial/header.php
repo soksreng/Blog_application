@@ -29,7 +29,7 @@ require '../config/database.php';
                 <li><a href="<?= ROOT_URL ?>signin.php">Sign in</a></li>
                 <li class="nav_profile">
                     <div class="avatar">
-                        <img src="./images/avatar.png" alt="">
+                        <img src="<?=ROOT_URL?>images/avatar.png" alt="">
                     </div>
 
                     <ul>

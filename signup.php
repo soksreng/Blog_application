@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,20 +19,26 @@
     <section class="form_section">
         <div class="container form_section-container">
             <h2>Sign Up</h2>
-            <div class="alert_message error">
-                <p>This is an error message</p>
-            </div>
+            <?php if (isset($_SESSION['signup'])) : ?>
+                <div class="alert_message error">
+                    <p><?= $_SESSION['signup'] ;
+                        unset($_SESSION['signup']);  ?>
+                    </p> 
+                </div>
+
+            <?php endif ?>
+                    
             <form action="signup-data.php" method="POST" enctype="multipart/form-data">
-                <input type="text" placeholder="First Name">
-                <input type="text" placeholder="Last Name">
-                <input type="text" placeholder="Username">
-                <input type="Email" placeholder="Email">
-                <input type="Password" placeholder="Password">
-                <input type="Password" placeholder="Confirm Password">
+                <input type="text" name="firstname" placeholder="First Name" required>
+                <input type="text" name ="lastname" placeholder="Last Name" required>
+                <input type="text" name ="username" placeholder="Username" required>
+                <input type="Email" name ="email" placeholder="Email" required>
+                <input type="Password" name ="password" placeholder="Password (must be at least 8 characters)" required >
+                <input type="Password" name ="confirmpassword" placeholder="Confirm Password" required>
                 <div class="form_control">
                     <label for="avatar">User Profile</label>
                     <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-                    <button type="submit" class="btn">Sign Up</button>
+                    <button type="submit" name = "submit" class="btn">Sign Up</button>
                     <small>Already have an account? <a href="signin.php">Sign in</a></small>
                 </div>
             </form>
