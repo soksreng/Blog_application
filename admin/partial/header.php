@@ -26,17 +26,25 @@ require '../config/database.php';
                 <li><a href="<?= ROOT_URL ?>about.php">About</a></li>
                 <li><a href="<?= ROOT_URL ?>services.php">Services</a></li>
                 <li><a href="<?= ROOT_URL ?>contact.php">Contact</a></li>
-                <li><a href="<?= ROOT_URL ?>signin.php">Sign in</a></li>
+                <!--if user is not logged in-->
+                <?php if (!isset($_SESSION['user_id'])) : ?>
+                    <!--show sign in button if the user is not logged in -->
+                    <li><a href="<?= ROOT_URL ?>signin.php">Sign in</a></li>
+                <?php endif; ?>
+                <!--if user is logged in-->
+                <?php if (isset($_SESSION['user_id'])) : ?>
                 <li class="nav_profile">
                     <div class="avatar">
-                        <img src="<?=ROOT_URL?>images/avatar.png" alt="">
+                    <img src=" <?= 'images/' . ($_SESSION['avatar']) ?>">
                     </div>
 
                     <ul>
                         <li><a href="<?= ROOT_URL ?>admin/dashboard.php">Dashboard</a></li>
-                        <li><a href="<?= ROOT_URL ?>logout.php">Logout</a></li>
+                        <!--show the logout button if the user is logged in-->
+                        <li><a href="<?= ROOT_URL?>logout.php">Logout</a></li>
                     </ul>
                 </li>
+                <?php endif;?>
                 
             </ul>
 

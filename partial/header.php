@@ -31,20 +31,20 @@ session_start()
                     <!--show sign in button if the user is not logged in -->
                     <li><a href="<?= ROOT_URL ?>signin.php">Sign in</a></li>
                 <?php endif; ?>
-
+                <!--if user is logged in-->
+                <?php if (isset($_SESSION['user_id'])) : ?>
                 <li class="nav_profile">
                     <div class="avatar">
-                        <img src=" <?= ROOT_URL ?>images/avatar.png" alt="">
+                        <img src=" <?= 'images/' . ($_SESSION['avatar']) ?>">
                     </div>
 
                     <ul>
                         <li><a href="<?= ROOT_URL ?>admin/dashboard.php">Dashboard</a></li>
                         <!--show the logout button if the user is logged in-->
-                        <?php if (isset($_SESSION['user_id'])) :?>
-                            <li><a href="<?= ROOT_URL?>logout.php">Logout</a></li>
-                        <?php endif; ?>
+                        <li><a href="<?= ROOT_URL?>logout.php">Logout</a></li>
                     </ul>
                 </li>
+                <?php endif;?>
                 
             </ul>
 

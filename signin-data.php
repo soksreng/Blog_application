@@ -14,7 +14,7 @@ if (isset($_POST['submit'])) {
     }
 
     // Query to check if the user exists (checking both email & username)
-    $query = "SELECT id, username, email, password FROM users WHERE username = '$user_input' OR email = '$user_input'";
+    $query = "SELECT * FROM users WHERE username = '$user_input' OR email = '$user_input'";
     $result = mysqli_query($conn, $query);
 
     if ( mysqli_num_rows($result) === 1) {
@@ -26,12 +26,14 @@ if (isset($_POST['submit'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
+            $_SESSION['avatar'] = $user['avatar'];
 
             // Check if user is admin
             if ($user['username'] === 'admin') {
                 $_SESSION['is_admin'] = true;
 
                 header("Location: admin/dashboard.php");
+
             } else{
                 // Redirect to index.php upon successful login (for user)
                 header("Location: index.php");
