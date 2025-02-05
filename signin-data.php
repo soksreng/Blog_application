@@ -29,8 +29,8 @@ if (isset($_POST['submit'])) {
             $_SESSION['avatar'] = $user['avatar'];
 
             // Check if user is admin
-            if ($user['username'] === 'admin') {
-                $_SESSION['is_admin'] = true;
+            if ($user['is_admin'] == 1) {
+                $_SESSION['user_is_admin'] = true;
 
                 header("Location: admin/dashboard.php");
 
@@ -42,13 +42,13 @@ if (isset($_POST['submit'])) {
 
         } else {
             $_SESSION['signin_error'] = "Incorrect password.";
+            header('Location: signin.php');
         }
     } else {
         $_SESSION['signin_error'] = "No account found with this username/email.";
-    }
-
-    // Redirect back to sign-in page with an error message
-    header('Location: signin.php');
-    exit();
+        header('Location: signin.php');
+        exit();}
 }
+
+    // Redirect back to sign-in page with an error message}
 ?>
