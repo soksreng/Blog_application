@@ -12,15 +12,32 @@ $result = mysqli_query($conn, $sql);
 ?>
 
 <section class="dashboard">
-    <?php  if(isset($_SESSION['add-user_success'])):?>
-            <div class="alert_message success">
-                <p>
-                    <?= $_SESSION['add-user_success'];
-                    unset($_SESSION['add-user_success']); ?>
-                </p>
-            </div>
     
+    <?php  if(isset($_SESSION['add-user_success'])): ?>
+        <div class="alert_message success">
+            <p>
+                <?= $_SESSION['add-user_success'];
+                unset($_SESSION['add-user_success']); ?>
+            </p>
+        </div>
+    <!-- if there is an error -->
+    <?php elseif(isset($_SESSION['update_error'])): ?>
+        <div class="alert_message error">
+            <p>
+                <?= $_SESSION['update_error'];
+                unset($_SESSION['update_error']); ?>
+            </p>
+        </div>
+    <!-- if the updaet is successful -->
+    <?php elseif(isset($_SESSION['update_success'])): ?>
+        <div class="alert_message success">
+            <p>
+                <?= $_SESSION['update_success'];
+                unset($_SESSION['update_success']); ?>
+            </p>
+        </div>
     <?php endif ?>
+    
     
     <div class="container dashboard_container">
 
