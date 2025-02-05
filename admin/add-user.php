@@ -22,9 +22,9 @@ session_start()
                 
         <?php endif ?>
         <form action="add-user-data.php" method="POST" enctype="multipart/form-data" >
-            <input type="text" name = "firstname"placeholder="First Name" required>
-            <input type="text" name = "last name" placeholder="Last Name" required>
-            <input type="text" name = "username "placeholder="Username" required>
+            <input type="text" name = "firstname" placeholder="First Name" required>
+            <input type="text" name = "lastname" placeholder="Last Name" required>
+            <input type="text" name = "username"placeholder="Username" required>
             <input type="Email" name = "email"placeholder="Email" required>
             <input type="Password" name= "password" placeholder="Password" required>
             <input type="Password" name = "confirmpassword"placeholder="Confirm Password" required>
