@@ -36,6 +36,20 @@ $result = mysqli_query($conn, $sql);
                 unset($_SESSION['update_success']); ?>
             </p>
         </div>
+    <?php elseif(isset($_SESSION['delete_success'])): ?>
+        <div class="alert_message success">
+            <p>
+                <?= $_SESSION['delete_success'];
+                unset($_SESSION['delete_success']); ?>
+            </p>
+        </div>
+    <?php elseif(isset($_SESSION['delete_success'])): ?>
+        <div class="alert_message error">
+            <p>
+                <?= $_SESSION['delete_success'];
+                unset($_SESSION['delete_success']); ?>
+            </p>
+        </div>
     <?php endif ?>
     
     
