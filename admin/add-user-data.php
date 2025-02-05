@@ -73,11 +73,11 @@ if (isset($_POST['submit'])) {
 
             if (mysqli_error($conn)) {
                 $_SESSION['add-user'] = "Add user failed " ;
-                header('Location: manage-user.php');
+                header('Location: add-user.php');
                 die();
             } else {
                 $_SESSION['add-user_success'] = "Add user successful";
-                header('Location: add-user.php');
+                header('Location: manage-users.php');
                 die();
             }
             

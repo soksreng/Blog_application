@@ -12,13 +12,6 @@ session_start()
                         unset($_SESSION['add-user']);  ?>
                     </p> 
                 </div>
-
-        <?php elseif (isset($_SESSION['add-user_success'])) : ?>
-                <div class="alert_message success">
-                    <p><?= $_SESSION['add-user_success'] ; 
-                            unset($_SESSION['add-user_success']); ?> 
-                    </p> 
-                </div>
                 
         <?php endif ?>
         <form action="add-user-data.php" method="POST" enctype="multipart/form-data" >

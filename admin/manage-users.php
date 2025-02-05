@@ -1,8 +1,27 @@
 <?php
 include 'partial/header.php';
+session_start();
+
+//fetch data from the database 
+$current_user_id = $_SESSION['user_id'];
+
+$sql = "SELECT * FROM users WHERE not id = $current_user_id";
+
+$result = mysqli_query($conn, $sql);
+
 ?>
 
 <section class="dashboard">
+    <?php  if(isset($_SESSION['add-user_success'])):?>
+            <div class="alert_message success">
+                <p>
+                    <?= $_SESSION['add-user_success'];
+                    unset($_SESSION['add-user_success']); ?>
+                </p>
+            </div>
+    
+    <?php endif ?>
+    
     <div class="container dashboard_container">
 
         <button class="sidebar_toggle" id="show_sidebar-btn">                
@@ -11,6 +30,7 @@ include 'partial/header.php';
         <button class="sidebar_toggle" id="hide_sidebar-btn">                
             <i class="fa-solid fa-left-long"></i>
         </button>
+
         <aside>
             <ul>
                 <li><a href="add-post.php"><i class="fa-solid fa-pen-nib"></i><h5>Add Post</h5></a></li>
@@ -35,30 +55,16 @@ include 'partial/header.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Jackkie</td>
-                        <td>jackkie</td>
-                        <td><a href="edit-user.php" class= "btn sm">Edit</a></td>
-                        <td><a href="delete-category.php" class= "btn sm delete">Delete</a></td>
-                        <td>YES</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>Reaksa</td>
-                        <td>iwin</td>
-                        <td><a href="edit-user.php" class= "btn sm">Edit</a></td>
-                        <td><a href="delete-category.php" class= "btn sm delete ">Delete</a></td>
-                        <td>No</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>Lyly</td>
-                        <td>kter</td>
-                        <td><a href="edit-user.php" class= "btn sm">Edit</a></td>
-                        <td><a href="delete-category.php" class= "btn sm delete">Delete</a></td>
-                        <td>No</td>
-                        
-                    </tr>
+                    <!--loop through the list of users-->
+                    <?php while($row = mysqli_fetch_assoc($result)):?>
+                        <tr>
+                            <td><?= "{$row['first_name']} {$row['last_name']}" ?></td>
+                            <td><?= $row['username'] ?></td>
+                            <td><a href="edit-user.php?id=<?= $row['id'] ?>" class= "btn sm">Edit</a></td>
+                            <td><a href="delete-user.php?id=<?= $row['id'] ?>" class= "btn sm delete">Delete</a></td>
+                            <td><?= $row['is_admin'] == 1 ? 'YES' : 'NO' ?></td>
+                        </tr>
+                    <?php endwhile ?>
                 </tbody>
             </table>
         </main>
