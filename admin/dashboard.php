@@ -4,6 +4,15 @@ session_start();
 ?>
 
 <section class="dashboard">
+       <!--show success message if add post successfully-->
+    <?php if (isset($_SESSION['add_post_success'])): ?>
+        <div class="alert_message success">
+            <p>
+                <?= $_SESSION['add_post_success'];
+                unset($_SESSION['add_post_success']); ?>
+            </p>
+        </div>
+    <?php endif; ?>
     <div class="container dashboard_container">
 
         <button class="sidebar_toggle" id="show_sidebar-btn">                
@@ -26,6 +35,15 @@ session_start();
         </aside>
 
         <main>
+               <!--show success message if add post successfully-->
+            <?php if (isset($_SESSION['add_post_success'])): ?>
+                <div class="alert_message success">
+                    <p>
+                        <?= $_SESSION['add_post_success'];
+                        unset($_SESSION['add_post_success']); ?>
+                    </p>
+                </div>
+            <?php endif; ?>
             <h2>Manage Posts</h2>
             <table>
                 <thead>

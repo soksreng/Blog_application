@@ -46,6 +46,11 @@ if(isset($_POST['submit'])){
         }
 
         if (!isset($_SESSION['add_post_error'])) {
+            //set all post featured to 0 if featured for this post is 1 
+            if ($_isfeatured == 1) {
+                $zero_sql = "UPDATE post SET is_featured = 0";
+                mysqli_query($conn, $zero_sql);// update all post to 0
+            } 
             // insert into post table
             $sql = "INSERT INTO post (title, body, category_id, thumbnail, author_id, is_featured)
                     VALUES ('$title', '$body', '$category', '$thumbnail_name', '$author_id', '$is_featured')";
@@ -59,6 +64,7 @@ if(isset($_POST['submit'])){
                 die();
             }
         }
+        
     }
 
     // redirect back to add-post page if there was any error
