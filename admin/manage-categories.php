@@ -15,6 +15,45 @@ $result = mysqli_query($conn, $sql);
 ?>
 
 <section class="dashboard">
+
+    <?php if(isset($_SESSION['add-category_success'])) : ?>
+        <div class="alert_message success">
+            <p><?= $_SESSION['add-category_success']; 
+                unset($_SESSION['add-category_success']) ?>
+            </p> 
+        </div>
+    <?php elseif(isset($_SESSION['add-category_error'])) : ?>
+        <div class="alert_messsage error">
+            <p><?= $_SESSION['add-category_error']; 
+                unset($_SESSION['add-category_error']) ?>
+            </p> 
+        </div>
+    <?php elseif(isset($_SESSION['update_category_error'])) :?>
+        <div class="alert_message error">
+            <p><?= $_SESSION['update_category_error'];
+                unset($_SESSION['update_category_error']) ?>
+            </p>
+        </div>
+    <?php elseif(isset($_SESSION['update_category_success'])) :?>
+        <div class="alert_message success">
+            <p><?= $_SESSION['update_category_success'];
+                unset($_SESSION['update_category_success']) ?>
+            </p>
+        </div>
+    <?php elseif(isset($_SESSION['delete_category_success'])) :?>
+        <div class="alert_message success">
+            <p><?= $_SESSION['delete_category_success'];
+                unset($_SESSION['delete_category_success']) ?>
+            </p>
+        </div>
+    <?php elseif(isset($_SESSION['delete_category_error'])) :?>
+        <div class="alert_message error">
+            <p><?= $_SESSION['delete_category_error'];
+                unset($_SESSION['delete_category_error']) ?>
+            </p>
+        </div>
+    <?php endif ?>
+
     <div class="container dashboard_container">
 
         <button class="sidebar_toggle" id="show_sidebar-btn">                

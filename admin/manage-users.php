@@ -29,35 +29,35 @@ $result = mysqli_query($conn, $sql);
         </div>
 
     <!-- if the update is unsuccessful -->
-    <?php elseif(isset($_SESSION['update_error'])): ?>
+    <?php elseif(isset($_SESSION['update_user_error'])): ?>
         <div class="alert_message error">
             <p>
-                <?= $_SESSION['update_error'];
-                unset($_SESSION['update_error']); ?>
+                <?= $_SESSION['update_user_error'];
+                unset($_SESSION['update_user_error']); ?>
             </p>
         </div>
     <!-- if the update is successful -->
-    <?php elseif(isset($_SESSION['update_success'])): ?>
+    <?php elseif(isset($_SESSION['update_user_success'])): ?>
         <div class="alert_message success">
             <p>
-                <?= $_SESSION['update_success'];
-                unset($_SESSION['update_success']); ?>
+                <?= $_SESSION['update_user_success'];
+                unset($_SESSION['update_user_success']); ?>
             </p>
         </div>
         <!-- if the delete is successful -->
-    <?php elseif(isset($_SESSION['delete_success'])): ?>
+    <?php elseif(isset($_SESSION['delete_user_success'])): ?>
         <div class="alert_message success">
             <p>
-                <?= $_SESSION['delete_success'];
-                unset($_SESSION['delete_success']); ?>
+                <?= $_SESSION['delete_user_success'];
+                unset($_SESSION['delete_user_success']); ?>
             </p>
         </div>
         <!-- if the delete is unsuccessful -->
-    <?php elseif(isset($_SESSION['delete_error'])): ?>
+    <?php elseif(isset($_SESSION['delete_user_error'])): ?>
         <div class="alert_message error">
             <p>
-                <?= $_SESSION['delete_error'];
-                unset($_SESSION['delete_error']); ?>
+                <?= $_SESSION['delete_user_error'];
+                unset($_SESSION['delete_user_error']); ?>
             </p>
         </div>
     <?php endif ?>

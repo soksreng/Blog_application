@@ -25,9 +25,9 @@ if (isset($_GET['id'])) {
     mysqli_query($conn, $sql);
 
     if (mysqli_error($conn)) {
-        $_SESSION['delete_error'] = 'Failed to delete user';
+        $_SESSION['delete_user_error'] = 'Failed to delete user';
     } else {
-        $_SESSION['delete_success'] = 'User and avatar deleted successfully';
+        $_SESSION['delete_user_success'] = 'User and avatar deleted successfully';
     }
 
     header('Location: manage-users.php');

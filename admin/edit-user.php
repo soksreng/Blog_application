@@ -3,22 +3,28 @@ include 'partial/header.php';;
 
 //fetch user id from the database by using get
 if(isset($_GET['id'])){
-    $user_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
-    $sql = "SELECT * FROM users WHERE id = $user_id";
-    $result = mysqli_query($conn, $sql);
-    $user = mysqli_fetch_assoc($result);
-} else {
+    $_SESSION ['user_id'] = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+
+} 
+if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
+    $_SESSION['update_user_error'] = "Error: user ID is missing.";
     header('Location: manage-users.php');
     die();
 }
+
+//fetch user data from the database
+$user_id = $_SESSION['user_id'];
+$sql = "SELECT * FROM users WHERE id = $user_id";
+$result = mysqli_query($conn, $sql);
+$user = mysqli_fetch_assoc($result);
 ?>
 <section class="form_section">
     <div class="container form_section-container">
-        <?php  if(isset($_SESSION['update_error'])): ?>
+        <?php  if(isset($_SESSION['update_user_error'])): ?>
             <div class="alert_message error">
                 <p>
-                    <?= $_SESSION['update_error'];
-                    unset($_SESSION['update_error']); ?>
+                    <?= $_SESSION['update_user_error'];
+                    unset($_SESSION['update_user_error']); ?>
                 </p>
             </div>
         <?php endif; ?>

@@ -11,8 +11,8 @@ if(isset($_POST['submit'])){
 
     // validate the input
     if(empty($firstname) || empty($lastname) ){
-        $_SESSION['update_error'] = "All fields are required.";
-        header('Location: edit-user.php ?id='.$id);
+        $_SESSION['update_user_error'] = "All fields are required.";
+        header('Location: edit-user.php');
         die();
     } else {
         // update the database
@@ -20,14 +20,13 @@ if(isset($_POST['submit'])){
         mysqli_query($conn, $sql);
 
         if(mysqli_error($conn)){
-            $_SESSION['update_error'] = "Failed to update user.";
+            $_SESSION['update_user_error'] = "Failed to update user.";
         } else {
-            $_SESSION['update_success'] = "User updated successfully.";
+            $_SESSION['update_user_success'] = "User updated successfully.";
         }
-        header('Location: manage-users.php');
     }
 } else {
-    header('Location: manage-users.php');
+    header('Location: edit-users.php');
     die();
 }
 
