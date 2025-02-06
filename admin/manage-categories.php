@@ -1,7 +1,17 @@
 <?php
-session_start();
 include 'partial/header.php';
 
+if(!isset($_SESSION['user_is_admin'])){
+    header("location: " . ROOT_URL . "logout.php");
+    //destroy all sessions and redirect user to login page
+    session_destroy();
+}
+
+//fetch data from the database
+
+$sql = "SELECT * FROM category ORDER BY title";
+
+$result = mysqli_query($conn, $sql);
 ?>
 
 <section class="dashboard">
@@ -37,13 +47,14 @@ include 'partial/header.php';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Travel</td>
-                        <td><a href="edit-category.html" class= "btn sm">Edit</a></td>
-                        <td><a href="delete-category.html" class= "btn sm delete">Delete</a></td>
-                        
-                    </tr>
-
+                    <!--loop through the list of categories-->
+                    <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+                        <tr>
+                            <td><?= $row['title'] ?></td>
+                            <td><a href="edit-category.php?id=<?= $row['id'] ?>" class= "btn sm">Edit</a></td>
+                            <td><a href="delete-category.php?id=<?= $row['id'] ?>" class= "btn sm delete">Delete</a></td>
+                        </tr>
+                    <?php endwhile ?>
                 </tbody>
             </table>
         </main>

@@ -1,6 +1,5 @@
 <?php
 include 'partial/header.php';;
-session_start();
 
 //fetch user id from the database by using get
 if(isset($_GET['id'])){

@@ -4,7 +4,7 @@ include 'partial/header.php';
 //fetch data from the database 
 $current_user_id = $_SESSION['user_id'];
 
-$sql = "SELECT * FROM users WHERE not id = $current_user_id";
+$sql = "SELECT * FROM users WHERE not id = '$user_id'";
 
 $result = mysqli_query($conn, $sql);
 
