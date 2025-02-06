@@ -1,6 +1,12 @@
 <?php
 include 'partial/header.php';
-session_start();
+
+// fetech post data from the database
+$current_user_id = $_SESSION['user_id'];
+
+$sql = "SELECT * FROM post WHERE author_id = $current_user_id";
+
+$result = mysqli_query($conn, $sql);
 ?>
 
 <section class="dashboard">
@@ -11,6 +17,15 @@ session_start();
                 <?= $_SESSION['add_post_success'];
                 unset($_SESSION['add_post_success']); ?>
             </p>
+        </div>
+        <!--show error message if add post unsuccessfully-->
+        <?php elseif (isset($_SESSION['add_post_error'])): ?>
+            <div class="alert_message error">
+                <p>
+                    <?= $_SESSION['add_post_error'];
+                    unset($_SESSION['add_post_error']);?>
+                </p>
+            </div>
         </div>
     <?php endif; ?>
     <div class="container dashboard_container">
@@ -46,36 +61,33 @@ session_start();
             <?php endif; ?>
             <h2>Manage Posts</h2>
             <table>
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Category</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>asdasadsas dassasasda sadsasdadsa</td>
-                        <td>Wildlife</td>
-                        <td><a href=" <?= ROOT_URL ?>edit-post.html" class= "btn sm">Edit</a></td>
-                        <td><a href="<?= ROOT_URL ?>delete-category.html" class= "btn sm delete">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>asdasadsas dassasasda sadsasdadsa</td>
-                        <td>Wildlife</td>
-                        <td><a href="edit-post.html" class= "btn sm">Edit</a></td>
-                        <td><a href="delete-category.html" class= "btn sm delete">Delete</a></td>
-                    </tr>
-                    <tr>
-                        <td>asdasadsas dassasasda sadsasdadsa</td>
-                        <td>Wildlife</td>
-                        <td><a href="edit-post.html" class= "btn sm">Edit</a></td>
-                        <td><a href="delete-category.html" class= "btn sm delete">Delete</a></td>
-                    </tr>
-
-                        
-                </tbody>
+                <!--show table only if there is post data in the database -->
+                <?php if (mysqli_num_rows($result) > 0) :?>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while($row = mysqli_fetch_assoc($result)) :?>
+                            <!-- fetch category name using category id from the database -->
+                            <?php
+                            $category_id = $row['category_id'];
+                            $sql_category = "SELECT title FROM category WHERE id = $category_id";
+                            $result_category = mysqli_query($conn, $sql_category);
+                            $category = mysqli_fetch_assoc($result_category);?>
+                            <tr>
+                                <td><?=$row['title']?></td>
+                                <td><?=$category['title']?></td>
+                                <td><a href="edit-post.php?id=<?= $row['id']?>" class= "btn sm">Edit</a></td>
+                                <td><a href="delete-post.php?id=<?= $row['id']?>" class= "btn sm delete">Delete</a></td>
+                            </tr>
+                        </tbody>
+                    <?php endwhile;?>
+                <?php endif;?>
             </table>
         </main>
     </div>
