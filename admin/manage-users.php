@@ -1,6 +1,5 @@
 <?php
 include 'partial/header.php';
-session_start();
 
 //fetch data from the database 
 $current_user_id = $_SESSION['user_id'];
@@ -12,7 +11,7 @@ $result = mysqli_query($conn, $sql);
 ?>
 
 <section class="dashboard">
-    
+    <!--if the add user is successful-->
     <?php  if(isset($_SESSION['add-user_success'])): ?>
         <div class="alert_message success">
             <p>
@@ -20,7 +19,16 @@ $result = mysqli_query($conn, $sql);
                 unset($_SESSION['add-user_success']); ?>
             </p>
         </div>
-    <!-- if there is an error -->
+    <!-- if the add user is unsuccessful -->
+    <?php  elseif(isset($_SESSION['add-user'])): ?>
+        <div class="alert_message error">
+            <p>
+                <?= $_SESSION['add-user'];
+                unset($_SESSION['add-user']); ?>
+            </p>
+        </div>
+
+    <!-- if the update is unsuccessful -->
     <?php elseif(isset($_SESSION['update_error'])): ?>
         <div class="alert_message error">
             <p>
@@ -28,7 +36,7 @@ $result = mysqli_query($conn, $sql);
                 unset($_SESSION['update_error']); ?>
             </p>
         </div>
-    <!-- if the updaet is successful -->
+    <!-- if the update is successful -->
     <?php elseif(isset($_SESSION['update_success'])): ?>
         <div class="alert_message success">
             <p>
@@ -36,6 +44,7 @@ $result = mysqli_query($conn, $sql);
                 unset($_SESSION['update_success']); ?>
             </p>
         </div>
+        <!-- if the delete is successful -->
     <?php elseif(isset($_SESSION['delete_success'])): ?>
         <div class="alert_message success">
             <p>
@@ -43,11 +52,12 @@ $result = mysqli_query($conn, $sql);
                 unset($_SESSION['delete_success']); ?>
             </p>
         </div>
-    <?php elseif(isset($_SESSION['delete_success'])): ?>
+        <!-- if the delete is unsuccessful -->
+    <?php elseif(isset($_SESSION['delete_error'])): ?>
         <div class="alert_message error">
             <p>
-                <?= $_SESSION['delete_success'];
-                unset($_SESSION['delete_success']); ?>
+                <?= $_SESSION['delete_error'];
+                unset($_SESSION['delete_error']); ?>
             </p>
         </div>
     <?php endif ?>

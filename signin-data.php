@@ -45,10 +45,10 @@ if (isset($_POST['submit'])) {
             header('Location: signin.php');
         }
     } else {
+        // Redirect back to sign-in page with an error message}
         $_SESSION['signin_error'] = "No account found with this username/email.";
         header('Location: signin.php');
         exit();}
 }
 
-    // Redirect back to sign-in page with an error message}
 ?>

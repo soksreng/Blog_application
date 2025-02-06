@@ -33,6 +33,13 @@ session_start();
                             unset($_SESSION['signin_error']); ?> 
                     </p> 
                 </div>
+
+            <?php elseif (isset($_SESSION['add-category_error'])) : ?>
+                <div class="alert_message error">
+                    <p><?= $_SESSION['add-category_error']; 
+                            unset($_SESSION['add-category_error']); ?> 
+                    </p> 
+                </div>
             <?php endif; ?>
             <form action="signin-data.php" method="POST">
                 <input type="text" name="user_input" placeholder="Username or Email">
