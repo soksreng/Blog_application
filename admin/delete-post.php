@@ -1,36 +1,36 @@
 <?php
-// Delete user from the database and remove avatar
+// Delete post from the database and remove thumbnails 
 include '../config/database.php';
 session_start();
 
 if (isset($_GET['id'])) {
-    $user_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    $post_id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 
-    // Fetch the user's avatar filename before deleting the user
-    $fetch_avatar_query = "SELECT * FROM users WHERE id = $user_id";
-    $result = mysqli_query($conn, $fetch_avatar_query);
-    $user = mysqli_fetch_assoc($result);
+    // Fetch the post's thumbnail filename before deleting the post
+    $fetch_thumbnail_query = "SELECT * FROM post WHERE id = $post_id";
+    $result = mysqli_query($conn, $fetch_thumbnail_query);
+    $post = mysqli_fetch_assoc($result);
 
-    if ($user) {
-        $avatar_path = '../images/' . $user['avatar'];  
+    if ($post) {
+        $thumbnail_path = '../images/' . $post['thumbnail'];  
 
-        // Delete the avatar file if it exists and is not a default avatar
-        if (!empty($user['avatar']) && file_exists($avatar_path)) {
-            unlink($avatar_path);  // Remove the file
+        // Delete the thumbnail file if it exists 
+        if (!empty($post['thumbnail'])) {
+            unlink($thumbnail_path);  // Remove the file
         }
     }
 
-    // Now delete the user from the database
-    $sql = "DELETE FROM users WHERE id = $user_id";
+    // Now delete the post from the database
+    $sql = "DELETE FROM post WHERE id = $post_id";
     mysqli_query($conn, $sql);
 
     if (mysqli_error($conn)) {
-        $_SESSION['delete_user_error'] = 'Failed to delete user';
+        $_SESSION['delete_post_error'] = "Failed to delete post";
     } else {
-        $_SESSION['delete_user_success'] = 'User and avatar deleted successfully';
+        $_SESSION['delete_post_success'] = "Post deleted successfully";
     }
 
-    header('Location: manage-users.php');
+    header('Location: dashboard.php');
     die();
 }
 ?>

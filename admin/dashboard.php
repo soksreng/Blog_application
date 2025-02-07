@@ -44,6 +44,22 @@ $result = mysqli_query($conn, $sql);
                     unset($_SESSION['update_post_error']);?>
                 </p>
             </div>
+        <!--show error messgage if delete post successfully-->
+        <?php elseif (isset($_SESSION['delete_post_success'])): ?>
+            <div class="alert_message success">
+                <p>
+                    <?= $_SESSION['delete_post_success'];
+                    unset($_SESSION['delete_post_success']);?>
+                </p>
+            </div>
+        <!--show error messgage if delete post unsuccessfully-->
+        <?php elseif (isset($_SESSION['delete_post_error'])): ?>
+            <div class="alert_message error">
+                <p>
+                    <?= $_SESSION['delete_post_error'];
+                    unset($_SESSION['delete_post_error']);?>
+                </p>
+            </div>
     <?php endif; ?>
     <div class="container dashboard_container">
 
@@ -67,15 +83,6 @@ $result = mysqli_query($conn, $sql);
         </aside>
 
         <main>
-               <!--show success message if add post successfully-->
-            <?php if (isset($_SESSION['add_post_success'])): ?>
-                <div class="alert_message success">
-                    <p>
-                        <?= $_SESSION['add_post_success'];
-                        unset($_SESSION['add_post_success']); ?>
-                    </p>
-                </div>
-            <?php endif; ?>
             <h2>Manage Posts</h2>
             <table>
                 <!--show table only if there is post data in the database -->
