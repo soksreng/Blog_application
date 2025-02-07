@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
 } 
 if (!isset($_SESSION['post_id']) || empty($_SESSION['post_id'])) {
     $_SESSION['update_post_error'] = "Error: user ID is missing.";
-    header('Location: dahboard.php');
+    header('Location: dashboard.php');
     die();
 }
 
@@ -28,7 +28,7 @@ $post = mysqli_fetch_assoc($result);
     <div class="container form_section-container">
         <h2>Edit Post</h2>
         <form action="edit-post-data.php" method="POST"enctype="multipart/form-data">
-
+            <input type="hidden" name="previous_thumbnail" value="<?= $post['thumbnail'] ?>">
             <input type="hidden" name="id" value="<?= $post['id'] ?>">
             <input type="text" name="title" value ="<?= $post['title']?>"placeholder="Title"> 
 
@@ -42,13 +42,16 @@ $post = mysqli_fetch_assoc($result);
             </select>
 
             <textarea rows = "10" name="body"placeholder="Body"><?=$post['body']?></textarea>
-            <div class="form_control inline">
-                <input type="checkbox" id="is_featured" name="is_featured" checked>
-                <label for="is_featured">Featured</label>
-            </div>
+            <?php if(isset($_SESSION['user_is_admin'])) :?>
+                <div class="form_control inline">
+                    <input type="checkbox" id="is_featured" name="is_featured" value ="1" checked>
+                    <label for="is_featured">Featured</label>
+                </div>
+            <?php endif?>
 
             <div class="form_control">
-                <label for="thumbnail"> Update Thumnail</label>
+                
+                <label for="thmbnail" value=""> Update Thumnail</label>
                 <input type="file" id="thumbnail" name="thumbnail" accept="image/png, image/jpeg">
             </div>
             <button type="submit" name="submit"class="btn">Update Post</button>

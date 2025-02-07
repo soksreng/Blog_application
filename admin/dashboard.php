@@ -27,6 +27,23 @@ $result = mysqli_query($conn, $sql);
                 </p>
             </div>
         </div>
+        <!--show error messgage if update post successfully-->
+        <?php elseif (isset($_SESSION['update_post_success'])): ?>
+            <div class="alert_message success">
+                <p>
+                    <?= $_SESSION['update_post_success'];
+                    unset($_SESSION['update_post_success']);?>
+                </p>
+            </div>
+        </div>
+        <!--show error messgage if update post unsuccessfully-->
+        <?php elseif (isset($_SESSION['update_post_error'])): ?>
+            <div class="alert_message error">
+                <p>
+                    <?= $_SESSION['update_post_error'];
+                    unset($_SESSION['update_post_error']);?>
+                </p>
+            </div>
     <?php endif; ?>
     <div class="container dashboard_container">
 
@@ -87,6 +104,10 @@ $result = mysqli_query($conn, $sql);
                             </tr>
                         </tbody>
                     <?php endwhile;?>
+                <?php else :?>
+                    <div class="alert_message error">
+                        <p>No post found</p>
+                    </div>
                 <?php endif;?>
             </table>
         </main>

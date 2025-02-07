@@ -5,6 +5,12 @@ include 'partial/header.php';
 
 $sql = "SELECT * FROM category";
 $result = mysqli_query($conn, $sql);
+
+//get the data back if the form is invalid
+$title = $_SESSION['add_post_data']['title'] ?? null;
+$body = $_SESSION['add_post_data']['body'] ?? null;
+
+unset($_SESSION['add_post_data']);
 ?>
 
 <section class="form_section">
@@ -31,17 +37,17 @@ $result = mysqli_query($conn, $sql);
 
             </select>
 
-            <textarea rows = "10" name="body"placeholder="Body"></textarea>
-            <div class="form_control inline">
-                <input type="checkbox" id="is_featured" name="is_featured" value ="1" checked>
-                <label for="is_featured">Featured</label>
-            </div>
+            <textarea rows = "10" name="body"placeholder="Body"><?=$body?></textarea>
+            <?php if(isset($_SESSION['user_is_admin'])) :?>
+                <div class="form_control inline">
+                    <input type="checkbox" id="is_featured" name="is_featured" value ="1" checked>
+                    <label for="is_featured">Featured</label>
+                </div>
+            <?php endif?>
 
             <div class="form_control">
                 <label for="thumbnail"> Add Thumnail</label>
-                <?php if(isset($_SESSION['user_is_admin'])) :?>
-                    <input type="file" id="thumbnail" name="thumbnail" accept="image/png, image/jpeg">
-                <?php endif?>
+                <input type="file" id="thumbnail" name="thumbnail" accept="image/png, image/jpeg">
             </div>
             <button type="submit" name="submit"class="btn">Add Post</button>
         </form>
