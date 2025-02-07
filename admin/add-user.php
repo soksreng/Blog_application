@@ -1,6 +1,5 @@
 <?php
 include 'partial/header.php';
-session_start()
 ?>
 
 <section class="form_section">

@@ -1,11 +1,9 @@
 <?php
-session_start();
 include 'partial/header.php';
 ?>
-
     <section class="form_section">
         <div class="container form_section-container">
-            <h2>Add Category</h2>
+            <h2>Add Category</h2>          
             <?php  if(isset($_SESSION['add-category_error'])): ?>
                 <div class="alert_message error">
                     <p>

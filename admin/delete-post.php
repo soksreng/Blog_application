@@ -32,5 +32,9 @@ if (isset($_GET['id'])) {
 
     header('Location: dashboard.php');
     die();
+    
+} else {
+    header('Location: dashboard.php');
+    die();
 }
 ?>

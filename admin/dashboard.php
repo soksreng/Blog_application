@@ -109,8 +109,8 @@ $result = mysqli_query($conn, $sql);
                                 <td><a href="edit-post.php?id=<?= $row['id']?>" class= "btn sm">Edit</a></td>
                                 <td><a href="delete-post.php?id=<?= $row['id']?>" class= "btn sm delete">Delete</a></td>
                             </tr>
-                        </tbody>
-                    <?php endwhile;?>
+                        <?php endwhile;?>
+                    </tbody>
                 <?php else :?>
                     <div class="alert_message error">
                         <p>No post found</p>
