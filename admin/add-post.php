@@ -28,10 +28,10 @@ unset($_SESSION['add_post_data']);
         <form action="add-post-data.php" method="POST"enctype="multipart/form-data">
             <input type="text" name="title"placeholder="Title">
 
-            <select name="category">
+            <select name="category_id">
                 <!--loop through the category tale in the database-->
                 <?php while($row = mysqli_fetch_assoc($result)):?>
-                    <option value="1"><?= $row['title']?></option>
+                    <option value="<?= $row['id']?>"><?= $row['title']?></option>
                 <?php endwhile;?>
 
 

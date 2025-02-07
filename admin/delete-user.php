@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
         }
     }
 
-    // Delete thumbnail if user is delted
+    // Delete thumbnail if user is deleted
     $fetch_thumbnail_query = "SELECT * FROM post WHERE author_id = $user_id";
     $result = mysqli_query($conn, $fetch_thumbnail_query);
     $post = mysqli_fetch_assoc($result);
@@ -29,8 +29,6 @@ if (isset($_GET['id'])) {
         if (!empty($post['thumbnail'])) {
             unlink($thumbnail_path);  // Remove the file
         }
-        $delete_thumbnail_query = "UPDATE post SET thumbnail = '' WHERE author_id = $user_id";
-        mysqli_query($conn, $delete_thumbnail_query);
     }
 
 

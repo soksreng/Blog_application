@@ -68,7 +68,7 @@ $result = mysqli_query($conn, $sql);
                 <li><a href="dashboard.php"><i class="fa-solid fa-pen-to-square"></i><h5>Manage Post</h5></a></li>
                 <?php if (isset($_SESSION['user_is_admin'])) : ?>
                     <li><a href="add-user.php"><i class="fa-solid fa-user"></i><h5>Add User</h5></a></li>
-                    <li><a href="edit-user.php"><i class="fa-solid fa-user-pen"></i><h5>Manage User</h5></a></li>
+                    <li><a href="manage-users.php"><i class="fa-solid fa-user-pen"></i><h5>Manage User</h5></a></li>
                     <li><a href="add-category.php"><i class="fa-regular fa-pen-to-square"></i><h5>Add Category</h5></a></li>
                     <li><a href="manage-categories.php" class ="active"><i class="fa-solid fa-list"></i><h5>Manage Categories</h5></a></li>
                 <?php endif;?>

@@ -5,7 +5,7 @@ session_start();
 if(isset($_POST['submit'])){
     $author_id = $_SESSION['user_id'];
     $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $category = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
+    $category_id = filter_var($_POST['category_id'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $body = filter_var($_POST['body'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $is_featured = isset($_POST['is_featured']) ? 1 : 0;
     $thumbnail = $_FILES['thumbnail'];
@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
     // validate input values
     if (!$title) {
         $_SESSION['add_post_error'] = "Title is required";
-    } elseif (!$category) {
+    } elseif (!$category_id) {
         $_SESSION['add_post_error'] = "Category is required";
     } elseif (!$body) {
         $_SESSION['add_post_error'] = "Body is required";
@@ -47,13 +47,13 @@ if(isset($_POST['submit'])){
 
         if (!isset($_SESSION['add_post_error'])) {
             //set all post featured to 0 if featured for this post is 1 
-            if ($_isfeatured == 1) {
+            if ($is_featured == 1) {
                 $zero_sql = "UPDATE post SET is_featured = 0";
                 mysqli_query($conn, $zero_sql);// update all post to 0
             } 
             // insert into post table
-            $sql = "INSERT INTO post (title, body, category_id, thumbnail, author_id, is_featured)
-                    VALUES ('$title', '$body', '$category', '$thumbnail_name', '$author_id', '$is_featured')";
+            $sql = "INSERT INTO post (title, body, thumbnail, category_id, author_id, is_featured)
+                    VALUES ('$title', '$body', '$thumbnail_name', '$category_id', '$author_id', '$is_featured')";
             mysqli_query($conn, $sql);
 
             if (mysqli_error($conn)) {
