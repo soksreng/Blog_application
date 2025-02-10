@@ -14,15 +14,21 @@
         <div class="container footer_container">
             <article>
                 <h4>Category</h4>
-                <ul>
-                    <li><a href="">Art</a></li>
-                    <li><a href="">Wild life</a></li>
-                    <li><a href="">Travel</a></li>
-                    <li><a href="">Science & Technology</a></li>
-                    <li><a href="">Food</a></li>
-                    <li><a href="">Music</a></li>
-                </ul>
+                <!-- fetech category -->
+
+                <?php
+                    $sql = "SELECT * FROM category";
+                    $result = mysqli_query($conn, $sql);
+                    while($category = mysqli_fetch_assoc($result)) :?>
+                    <ul>
+                        <li>
+                            <a href="category-post.php?id=<?= $category['id']?>" ><?=$category['title']?></a>
+                        </li>
+                    </ul>
+                <?php endwhile;
+                ?>
             </article>
+
             <article>
                 <h4>Support</h4>
                 <ul>

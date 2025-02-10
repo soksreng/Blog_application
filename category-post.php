@@ -1,161 +1,101 @@
 <?php
-include 'partial/header.php'
+include 'partial/header.php';
+
+//fetch categories from the posts database
+if(isset($_GET['id'])){
+    $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT, FILTER_SANITIZE_SPECIAL_CHARS);
+    $sql = "SELECT * FROM post WHERE category_id = $id ORDER BY date_time DESC";
+    $posts = mysqli_query($conn, $sql);
+} else {
+    header('Location: blog.php');
+    die();
+}
 ?>
 
 
 <header class="category_title">
-    <h2>Category Title</h2>
+    <!--fetech Category title-->
+    <?php
+        $category_sql = "SELECT * FROM category WHERE id = $id";
+        $category_result = mysqli_query($conn, $category_sql);
+        $category = mysqli_fetch_assoc($category_result);
+    ?>
+
+    <h2><?=$category['title']?></h2>
 </header>
 
 <!--End Category title-->
-
-<section class="posts">
-    <div class="container posts_container">
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="/images/blog2_cat.jpg">
-            </div>
-            <div class="post_info">
-                <a href="" class="category_button">Cat</a>
-                <h3 class="post_title"><a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h3>
-                
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias atque ipsum, similique sint aperiam eaque esse cumque minus molestias aspernatur nobis incidunt.
-                </p>
-
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="/images/author.png">
+<?php if (mysqli_num_rows($posts) > 0) : ?>
+    <section class="posts">
+        <div class="container posts_container">
+            <!-- loop through the list of posts -->
+             <?php while ($post = mysqli_fetch_assoc($posts) ) : ?>
+                <article class="post">
+                    <div class="post_thumbnail">
+                        <img src="./images/<?=$post['thumbnail']?>">
                     </div>
-                    <div class="post_author-info">
-                        <h5>by: Jackie CHAN</h5>
-                        <small>Jan 30, 2025 -10:00</small>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="/images/blog2_cat.jpg">
-            </div>
-            <div class="post_info">
-                <a href="" class="category_button">Cat</a>
-                <h3 class="post_title"><a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h3>
-                
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias atque ipsum, similique sint aperiam eaque esse cumque minus molestias aspernatur nobis incidunt.
-                </p>
-
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="/images/author.png">
+                    <div class="post_info">
+                        <!--fetech categorie from the database -->
+                        <?php
+                            $category_id = $post['category_id'];
+                            $sql = "SELECT * FROM category WHERE id = $category_id";
+                            $result = mysqli_query($conn, $sql);
+                            $category = mysqli_fetch_assoc($result);
+                        ?> 
+                        
+                        <a href="category-post.php" class="category_button"><?=$category['title']?></a>
+                        <h2 class="post_title"> 
+                            <a href="post.php?id=<?=$post['id']?>"><?= $post['title'] ?> </a> 
+                        </h2>
+                        
+                        <p class="post_body" >
+                            <?= substr($post['body'], 0, 200)?>...
+                        </p>
+                        
+                        <div class="post_author">
+                        <!-- fetch user from the database -->
+                         <?php
+                            $author_id = $post['author_id'];
+                            $author_sql = "SELECT * FROM users WHERE id = $author_id";
+                            $author_result = mysqli_query($conn, $author_sql);
+                            $author = mysqli_fetch_assoc($author_result);
+                            ?>
+                        <div class="post_author_avatar">
+                            <img src="./images/<?=$author['avatar']?>">
+                        </div>
+                        <div class="post_author-info">
+                            <h5>by:<?="{$author['first_name']} {$author['last_name']}"?></h5>
+                            <small>
+                                <?= date('M d, Y - H:i', strtotime($post['date_time'])) ?>
+                            </small>
                     </div>
-                    <div class="post_author-info">
-                        <h5>by: Jackie CHAN</h5>
-                        <small>Jan 30, 2025 -10:00</small>
                 </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="/images/blog2_cat.jpg">
-            </div>
-            <div class="post_info">
-                <a href="" class="category_button">Cat</a>
-                <h3 class="post_title"><a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h3>
-                
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias atque ipsum, similique sint aperiam eaque esse cumque minus molestias aspernatur nobis incidunt.
-                </p>
+            </article>
+            <?php endwhile;?>
 
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="/images/author.png">
-                    </div>
-                    <div class="post_author-info">
-                        <h5>by: Jackie CHAN</h5>
-                        <small>Jan 30, 2025 -10:00</small>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="/images/blog2_cat.jpg">
-            </div>
-            <div class="post_info">
-                <a href="" class="category_button">Cat</a>
-                <h3 class="post_title"><a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h3>
-                
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias atque ipsum, similique sint aperiam eaque esse cumque minus molestias aspernatur nobis incidunt.
-                </p>
 
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="/images/author.png">
-                    </div>
-                    <div class="post_author-info">
-                        <h5>by: Jackie CHAN</h5>
-                        <small>Jan 30, 2025 -10:00</small>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="/images/blog2_cat.jpg">
-            </div>
-            <div class="post_info">
-                <a href="" class="category_button">Cat</a>
-                <h3 class="post_title"><a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h3>
-                
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias atque ipsum, similique sint aperiam eaque esse cumque minus molestias aspernatur nobis incidunt.
-                </p>
-
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="/images/author.png">
-                    </div>
-                    <div class="post_author-info">
-                        <h5>by: Jackie CHAN</h5>
-                        <small>Jan 30, 2025 -10:00</small>
-                </div>
-            </div>
-        </article>
-        <article class="post">
-            <div class="post_thumbnail">
-                <img src="/images/blog2_cat.jpg">
-            </div>
-            <div class="post_info">
-                <a href="" class="category_button">Cat</a>
-                <h3 class="post_title"><a href="post.html">Lorem ipsum dolor sit amet consectetur adipisicing elit.</a></h3>
-                
-                <p class="post_body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias atque ipsum, similique sint aperiam eaque esse cumque minus molestias aspernatur nobis incidunt.
-                </p>
-
-                <div class="post_author">
-                    <div class="post_author_avatar">
-                        <img src="/images/author.png">
-                    </div>
-                    <div class="post_author-info">
-                        <h5>by: Jackie CHAN</h5>
-                        <small>Jan 30, 2025 -10:00</small>
-                </div>
-            </div>
-        </article>
+        </div>
+    </section>
+<?php else : ?>
+    <div class="alert_message error">
+        <p>No post found in this category</p>
     </div>
-</section>
+    <?php endif;?>
+
 
 <!--End Posts-->
 
 <section class="category_buttons">
     <div class="container category_buttons-container">
-        <a href="" class="category_button">Art</a>
-        <a href="" class="category_button">Wild Life</a>
-        <a href="" class="category_button">Travel</a>
-        <a href="" class="category_button">Science & Technology</a>
-        <a href="" class="category_button">Food</a>
-        <a href="" class="category_button">Music</a>
+
+        <!--fetech all categories -->
+        <?php
+            $sql = "SELECT * FROM category";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)) :?>
+                <a href="category.php?id=<?=$row['id']?>" class="category_button"><?=$row['title']?></a>
+        <?php endwhile?>
+   
     </div>
 </section>
 

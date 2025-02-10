@@ -229,7 +229,6 @@ nav .container{
 
 /*Posts */
 
-
 .posts_container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -391,9 +390,15 @@ footer ul a:hover {
     padding: 1rem 2rem 2rem;
 }
 
-.singlepost_thumbnail{
-    margin: 1rem 0 1rem;
-}
+.singlepost_container h2 {
+    margin-top: 0rem;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    text-align: center;
+  }
+
+
 .singlepost_container p{
     margin-top: 1rem;
 

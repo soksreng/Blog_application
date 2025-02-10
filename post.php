@@ -1,30 +1,48 @@
 <?php
-include 'partial/header.php'
+include 'partial/header.php';
+
+//fetch post from the database
+if(isset($_GET['id'])){
+    $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
+    $sql = "SELECT * FROM post WHERE id = $id";
+    $result = mysqli_query($conn, $sql);
+    $post = mysqli_fetch_assoc($result);
+
+    //fetech author information
+    $author_id = $post['author_id'];
+    $sql_author = "SELECT * FROM users WHERE id = $author_id";
+    $result_author = mysqli_query($conn, $sql_author);
+    $author = mysqli_fetch_assoc($result_author);
+} else {
+    header('Location: index.php');
+    die();
+} 
 ?>
 
 
 <section class="singlepost">
-    <div class="container singlepost_container">
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sint possimus earum distinctio sequi, omnis placeat nam tempore eveniet voluptatem quibusdam eos fugiat sit consequatur qui i</h2>
+    <div class="container singlepost_container section_extra-margin">
+        <h2><?= $post['title']?></h2>
 
         <div class="post_author">
             <div class="post_author_avatar">
-                <img src="/images/author.png" alt="">
+                <img src="./images/<?= $author['avatar']?>" >
             </div>
             <div class="post_author-info">
-                <h5>By: Jackkenas</h5>
-                <small>Jan 30, 2025</small>
+                <h5>By: <?= "{$author['first_name']} {$author['last_name']}" ?></h5>
+                <small>
+                    <?=date("M d, Y - H:i", strtotime($post['date_time']))?>
+                </small>
             </div>
         </div>
         <div class="singlepost_thumbnail">
-            <img src="/images/blog1_dog.jpg" alt="">
+            <img src="./images/<?=$post['thumbnail']?>">
         </div>
 
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui libero in placeat fugit repellat rem dol</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui libero in placeat fugit repellat rem dol</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui libero in placeat fugit repellat rem dol</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui libero in placeat fugit repellat rem dol</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui libero in placeat fugit repellat rem dol</p>
+        <p>
+            <?= $post['body']?>
+        </p>
+
         
     </div>
 </section>

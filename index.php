@@ -32,7 +32,7 @@ $post_result = mysqli_query($conn, $post_sql);
                 
                 <a href="category-post.php" class="category_button"><?=$category['title']?></a>
                 <h2 class="post_title"> 
-                    <a href="post.php"><?= $featured_post['title'] ?> </a>
+                    <a href="post.php?id=<?=$featured_post['id']?>"><?= $featured_post['title'] ?> </a>
                 </h2>
                 <p class="post_body" >
                     <?= substr($featured_post['body'], 0, 200) ?>...
@@ -73,7 +73,7 @@ $post_result = mysqli_query($conn, $post_sql);
                 </div>
                 <div class="post_info">
                     <!-- fetch categorie from the database -->
-                        <?php
+                    <?php
                         $category_id = $post['category_id'];
                         $sql = "SELECT * FROM category WHERE id = $category_id";
                         $result = mysqli_query($conn, $sql);
@@ -81,7 +81,7 @@ $post_result = mysqli_query($conn, $post_sql);
                     ?>
                     <a href="category-post.php" class="category_button"><?=$category['title']?></a>
                     <h3 class="post_title">
-                        <a href="post.html"><?= $post['title']?></a>
+                        <a href="post.php?id=<?=$post['id']?>"><?= $post['title']?></a>
                     </h3>
                     
                     <p class="post_body">
@@ -118,13 +118,14 @@ $post_result = mysqli_query($conn, $post_sql);
 
 <section class="category_buttons">
     <div class="container category_buttons-container">
-        <a href="" class="category_button">Art</a>
-        <a href="" class="category_button">Wild Life</a>
-        <a href="" class="category_button">Travel</a>
-        <a href="" class="category_button">Science & Technology</a>
-        <a href="" class="category_button">Food</a>
-        <a href="" class="category_button">Music</a>
+        <?php
+            $sql = "SELECT * FROM category";
+            $result = mysqli_query($conn, $sql);
+            while($category = mysqli_fetch_assoc($result)) :?>
+                <a href="category-post.php?id=<?= $category['id']?>" class="category_button"><?=$category['title']?></a>
+                <?php endwhile;?>
     </div>
+
 </section>
 
 
