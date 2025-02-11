@@ -110,6 +110,10 @@ $post_result = mysqli_query($conn, $post_sql);
         <?php endwhile;?>
     </div>
 </section>
+<?php else: ?>
+    <div class="alert_message_error_section_extra-margin">
+        <p>No post found</p>
+    </div>
 
 <?php endif;?>
 
