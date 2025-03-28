@@ -53,7 +53,7 @@ Blog_application/
 
 ### 1. Clone the repo  
 ```bash
-git clone https://github.com/yourusername/Blog_application.git
+git clone https://github.com/soksreng/Blog_application.git
 ```
 
 ### 2. Move to XAMPP `htdocs`  
@@ -66,8 +66,8 @@ C:/xampp/htdocs/Blog_application
 
 ### 4. Set up the database  
 - Go to **phpMyAdmin**
-- Create a new database (e.g. `blog_app`)
-- Import `blog_app.sql` if available, or manually create:
+- Create a new database (e.g. `Blog_application`)
+- Import `Blog_application.sql`, or manually create:
   - `users` table
   - `posts` table
   - `categories` table
@@ -107,24 +107,15 @@ http://localhost/Blog_application/
 ## ✨ Optional Future Features
 
 - Admin dashboard for creating/editing posts
-- Rich text editor (like TinyMCE)
 - Image upload for posts
 - Password hashing for better security
 - Pagination for post lists
-- Comment section under posts
-
----
-
-## 📸 Screenshots (Optional)
-
-_Add screenshots later if you want to show off the UI._
 
 ---
 
 ## 👨‍💻 Author
 
 Jack – CS Student @ Fort Hays & AUPP  
-Built this to practice PHP, database connections, and user login systems.
 
 ---
 
