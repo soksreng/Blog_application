@@ -25,24 +25,53 @@ Built using PHP & MySQL with simple routing and form handling.
 
 ```
 Blog_application/
-│
-├── index.php               # Homepage
-├── blog.php                # Blog posts list
-├── post.php                # Single post view
-├── search.php              # Search functionality
-├── category-post.php       # Filter by category
-│
-├── signin.php              # Login form
-├── signup.php              # Registration form
-├── signin-data.php         # Login logic
-├── signup-data.php         # Registration logic
-├── logout.php              # Logout handler
-│
-├── about.php               # About page
-├── contact.php             # Contact page
-├── services.php            # Services page
-│
-└── .git/                   # Git metadata (if applicable)
+├── about.php
+├── blog.php
+├── category-post.php
+├── contact.php
+├── index.php
+├── logout.php
+├── post.php
+├── search.php
+├── services.php
+├── signin.php
+├── signup.php
+├── signin-data.php
+├── signup-data.php
+├── admin/
+│   ├── add-category.php
+│   ├── add-category-data.php
+│   ├── add-post.php
+│   ├── add-post-data.php
+│   ├── add-user.php
+│   ├── add-user-data.php
+│   ├── dashboard.php
+│   ├── delete-category.php
+│   ├── delete-post.php
+│   ├── delete-user.php
+│   ├── edit-category.php
+│   ├── edit-category-data.php
+│   ├── edit-post.php
+│   ├── edit-post-data.php
+│   ├── edit-user.php
+│   ├── edit-user-data.php
+│   ├── manage-categories.php
+│   ├── manage-users.php
+│   └── partial/
+│       └── header.php
+├── config/
+│   ├── constants.php
+│   └── database.php
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+├── images/
+│   └── [avatar images...]
+├── partial/
+│   ├── header.php
+│   └── footer.php
+└── .git/     
 ```
 
 > 💡 You can improve this structure by using includes for header/footer and creating a config file for database connection.
@@ -115,7 +144,7 @@ http://localhost/Blog_application/
 
 ## 👨‍💻 Author
 
-Jack – CS Student @ Fort Hays & AUPP  
+Sok Sreng(Jack) Chan – CS Student @ Fort Hays & AUPP  
 
 ---
 
